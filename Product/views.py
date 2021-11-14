@@ -38,7 +38,6 @@ class ProductCreate(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             # <process form cleaned data>
-            print(form.data)
             Product.objects.using(alias='product_db').create(name=form.data["name"], weight=form.data["weight"], price=form.data["price"])
             return HttpResponseRedirect('/products')
 
