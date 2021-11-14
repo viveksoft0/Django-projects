@@ -1,0 +1,27 @@
+{% extends 'Product/base.html' %} {% block content %}
+<a href="{% url 'create'%}">Add Product</a>
+<table>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+    </tr>
+    {% for i in productlist %}
+    <tr>
+        <td>{{i.id}}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.weight}}</td>
+        <td>{{i.price}}</td>
+        <td>
+            <a href="{%url 'update' i.id %}">Update</a>
+            <a href="{% url 'delete' i.id %}">Delete</a>
+
+        </td>
+    </tr>
+    {% empty %}
+    <h3>No Product Listed</h3>
+    {% endfor %}
+</table>
+{% endblock content %}

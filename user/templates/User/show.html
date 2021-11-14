@@ -1,0 +1,41 @@
+{% extends 'User/base.html'%} {% block content %}
+<h1 style="background-color: rgb(95, 154, 161)">Post</h1>
+
+
+<h1 style="position: relative">Post-View-Information</h1>
+<h4 style="color: blueviolet;"></h4>
+<a href="{% url 'Post' %}">Add new</a> {% if so %}
+<h2 style="display: inline-flex">Post Model Data</h2>
+<table>
+
+    <th scope="col">Id</th>
+    <th scope="col">Posts</th>
+    <th scope="col">Created Date</th>
+    <th scope="col">Updated Date</th>
+    <th scope="col">Action</th>
+    {% for i in so %}
+
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.text}}</td>
+        <td>{{i.created_at}}</td>
+        <td>{{i.updated_at}}</td>
+        <td>
+            <form action="{% url 'delete' i.id %}" method="POST" style="background-position-x: center;">
+                {% csrf_token %}
+                <input type="submit" style="background-color: rgb(207, 14, 14);" value="Delete">
+            </form>
+            <form action="{% url 'update' i.id%}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Edit">
+            </form>
+
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+<h3 style="color: rgb(233, 31, 31)">No record found</h3>
+{% endif %} {% endblock content %}

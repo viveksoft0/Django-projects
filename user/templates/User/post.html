@@ -1,0 +1,10 @@
+ {% extends 'User/base.html'%} {% block content %}
+<h1>Post</h1>
+
+<h3>Post List</h3>
+<form action="" method="POST">
+    {% csrf_token %} {{form.as_p}}
+    <input type="submit" value="Post">
+</form>
+
+<a href="{% url 'home' %}">Back to Home</a> {% endblock content %}
